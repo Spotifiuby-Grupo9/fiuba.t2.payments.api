@@ -1,8 +1,8 @@
 const ethers = require("ethers");
-const payment = require("../database/schemas/payment.js");
+const wallet = require("../database/schemas/wallet.js");
 // const accounts = [];
 
-const Payment = payment.schema();
+const Wallet = wallet.schema();
 
 const getDeployerWallet = ({ config }) => () => {
   const provider = new ethers.providers.InfuraProvider(config.network, config.infuraApiKey);
@@ -18,13 +18,13 @@ const createWallet = () => async () => {
 
   const uid = "jasfRcNOyFZzLJjSlPPWLFAMghD2"; //TODO: remove harcoding, bring param
 
-  const newPayment = new Payment({
+  const newWallet = new Wallet({
     address: wallet.address,
     privateKey: wallet.privateKey,
     uid: uid,
   });
 
-  newPayment.save().then(() => console.log("paymentAdded: ", newPayment));
+  newWallet.save().then(() => console.log("wallet added: ", newWallet));
 
   const result = {
     id: "TODO", //TODO get from answer
@@ -36,7 +36,7 @@ const createWallet = () => async () => {
 };
 
 const getWalletsData = () => () => {
-  return Payment.find();
+  return Wallet.find();
 };
 
 const getWalletData = () => index => {
