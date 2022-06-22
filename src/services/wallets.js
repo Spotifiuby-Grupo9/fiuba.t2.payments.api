@@ -15,16 +15,16 @@ const createWallet = () => async () => {
   const provider = new ethers.providers.InfuraProvider("kovan", process.env.INFURA_API_KEY);
   // This may break in some environments, keep an eye on it
   const wallet = ethers.Wallet.createRandom().connect(provider);
-  
-  const uid = "jasfRcNOyFZzLJjSlPPWLFAMghD2"; //TODO: remove harcoding, bring param 
 
-  const newPayment = new Payment({ 
-      address: wallet.address,
-      privateKey: wallet.privateKey,
-      uid: uid 
+  const uid = "jasfRcNOyFZzLJjSlPPWLFAMghD2"; //TODO: remove harcoding, bring param
+
+  const newPayment = new Payment({
+    address: wallet.address,
+    privateKey: wallet.privateKey,
+    uid: uid,
   });
 
-  newPayment.save().then(() => console.log('paymentAdded: ', newPayment));
+  newPayment.save().then(() => console.log("paymentAdded: ", newPayment));
 
   const result = {
     id: "TODO", //TODO get from answer
@@ -43,7 +43,8 @@ const getWalletData = () => index => {
   return accounts[index - 1]; //TODO
 };
 
-const getWallet = ({}) => index => { //TODO
+const getWallet = ({}) => index => {
+  //TODO
   const provider = new ethers.providers.InfuraProvider("kovan", process.env.INFURA_API_KEY);
 
   return new ethers.Wallet(accounts[index - 1].privateKey, provider);

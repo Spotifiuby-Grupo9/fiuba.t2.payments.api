@@ -1,4 +1,4 @@
-mongoose = require('mongoose');
+mongoose = require("mongoose");
 
 /**
  * Example:
@@ -11,14 +11,11 @@ mongoose = require('mongoose');
  */
 
 const schema = () => {
-    return mongoose.model('Payment', 
-        { 
-            address: String,
-            privateKey: String,
-            uid: String
-        }
-    );
-}
-
+  return mongoose.model("Payment", {
+    address: String,
+    privateKey: String,
+    uid: String,
+  });
+};
 
 module.exports.schema = schema;

@@ -1,9 +1,8 @@
-mongoose = require('mongoose');
-payment = require('./schemas/payment.js');
+mongoose = require("mongoose");
+payment = require("./schemas/payment.js");
 
 const connection = async () => {
-  const uri =
-    "mongodb+srv://user:FOrKF9muEfWunnQ8@spotifiuby-g9.wrf52.mongodb.net/payments-test?retryWrites=true";
+  const uri = "mongodb+srv://user:FOrKF9muEfWunnQ8@spotifiuby-g9.wrf52.mongodb.net/payments-test?retryWrites=true";
 
   mongoose.connect(uri);
 
