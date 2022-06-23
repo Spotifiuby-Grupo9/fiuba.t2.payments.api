@@ -6,15 +6,18 @@ function schema() {
         id: {
           type: "integer",
         },
+        uid: {
+          type: "string",
+        },
       },
     },
-    required: ["id"],
+    required: ["id", "uid"],
   };
 }
 
 function handler({ walletService }) {
   return async function (req, reply) {
-    const body = await walletService.createWallet();
+    const body = await walletService.createWallet(req.body.uid);
     return reply.code(200).send(body);
   };
 }

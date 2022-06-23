@@ -11,12 +11,10 @@ const getDeployerWallet = ({ config }) => () => {
   return wallet;
 };
 
-const createWallet = () => async () => {
+const createWallet = () => async (uid) => {
   const provider = new ethers.providers.InfuraProvider("kovan", process.env.INFURA_API_KEY);
   // This may break in some environments, keep an eye on it
   const wallet = ethers.Wallet.createRandom().connect(provider);
-
-  const uid = "jasfRcNOyFZzLJjSlPPWLFAMghD2"; //TODO: remove harcoding, bring param
 
   const newWallet = new Wallet({
     address: wallet.address,
@@ -24,14 +22,17 @@ const createWallet = () => async () => {
     uid: uid,
   });
 
-  newWallet.save().then(() => console.log("wallet added: ", newWallet));
+  newWallet.save().then(() => 
+    console.log("new wallet added: ", newWallet)
+  );
 
   const result = {
-    id: "TODO", //TODO get from answer
+    id: newWallet._id.toString(),
     address: wallet.address,
     privateKey: wallet.privateKey,
     uid: uid,
   };
+  
   return result;
 };
 
