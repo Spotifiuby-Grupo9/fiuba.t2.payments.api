@@ -1,8 +1,5 @@
 const ethers = require("ethers");
-const wallet = require("../database/schemas/wallet.js");
-// const accounts = [];
-
-const Wallet = wallet.schema();
+const walletRepository = require("../repository/walletRepository.js");
 
 const getDeployerWallet = ({ config }) => () => {
   const provider = new ethers.providers.InfuraProvider(config.network, config.infuraApiKey);
@@ -16,26 +13,11 @@ const createWallet = () => async uid => {
   // This may break in some environments, keep an eye on it
   const wallet = ethers.Wallet.createRandom().connect(provider);
 
-  const newWallet = new Wallet({
-    address: wallet.address,
-    privateKey: wallet.privateKey,
-    uid: uid,
-  });
-
-  newWallet.save().then(() => console.log("new wallet added: ", newWallet));
-
-  const result = {
-    id: newWallet._id.toString(),
-    address: wallet.address,
-    privateKey: wallet.privateKey,
-    uid: uid,
-  };
-
-  return result;
+  return walletRepository.saveWallet(wallet, uid);
 };
 
 const getWalletsData = () => () => {
-  return Wallet.find();
+  return walletRepository.getAll();
 };
 
 const getWalletData = () => index => {
