@@ -21,7 +21,7 @@ const getWalletsData = () => () => {
 };
 
 const getWalletData = () => uid => {
-  console.log("req.params.uid", uid)
+  console.log("req.params.uid", uid);
   return walletRepository.get(uid); //TODO
 };
 

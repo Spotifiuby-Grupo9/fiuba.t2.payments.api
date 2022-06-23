@@ -5,7 +5,7 @@ const createDeposit = require("./handlers/createDepositHandler");
 const getDeposit = require("./handlers/getDepositHandler");
 
 function getWalletDataRoute({ services, config }) {
-  console.log("something")
+  console.log("something");
   return {
     method: "GET",
     url: "/wallet/:uid",

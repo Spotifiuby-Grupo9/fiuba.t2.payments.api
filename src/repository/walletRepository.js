@@ -25,12 +25,12 @@ const getAll = () => () => {
   return Wallet.find();
 };
 
-const get = () => (uid) => {
-    return Wallet.find({"uid": uid})
-}
+const get = () => uid => {
+  return Wallet.find({ uid: uid });
+};
 
 module.exports = {
   saveWallet: saveWallet(),
   getAll: getAll(),
-  get: get()
+  get: get(),
 };
