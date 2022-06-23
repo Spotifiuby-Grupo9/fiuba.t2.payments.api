@@ -17,11 +17,12 @@ const createWallet = () => async uid => {
 };
 
 const getWalletsData = () => () => {
-  return walletRepository.getAll();
+  return walletRepository.getAll(); //TODO: add pagination here
 };
 
-const getWalletData = () => index => {
-  return accounts[index - 1]; //TODO
+const getWalletData = () => uid => {
+  console.log("req.params.uid", uid)
+  return walletRepository.get(uid); //TODO
 };
 
 const getWallet = ({}) => index => {

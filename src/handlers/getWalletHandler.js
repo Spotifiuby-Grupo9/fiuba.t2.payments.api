@@ -3,18 +3,18 @@ function schema() {
     params: {
       type: "object",
       properties: {
-        id: {
-          type: "integer",
+        uid: {
+          type: "string",
         },
       },
     },
-    required: ["id"],
+    required: ["uid"],
   };
 }
 
 function handler({ walletService }) {
   return async function (req, reply) {
-    const body = await walletService.getWalletData(req.params.id);
+    const body = await walletService.getWalletData(req.params.uid);
     reply.code(200).send(body);
   };
 }
