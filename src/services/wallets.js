@@ -11,7 +11,7 @@ const getDeployerWallet = ({ config }) => () => {
   return wallet;
 };
 
-const createWallet = () => async (uid) => {
+const createWallet = () => async uid => {
   const provider = new ethers.providers.InfuraProvider("kovan", process.env.INFURA_API_KEY);
   // This may break in some environments, keep an eye on it
   const wallet = ethers.Wallet.createRandom().connect(provider);
@@ -22,9 +22,7 @@ const createWallet = () => async (uid) => {
     uid: uid,
   });
 
-  newWallet.save().then(() => 
-    console.log("new wallet added: ", newWallet)
-  );
+  newWallet.save().then(() => console.log("new wallet added: ", newWallet));
 
   const result = {
     id: newWallet._id.toString(),
@@ -32,7 +30,7 @@ const createWallet = () => async (uid) => {
     privateKey: wallet.privateKey,
     uid: uid,
   };
-  
+
   return result;
 };
 
