@@ -7,7 +7,8 @@ const getContract = (config, wallet) => {
   return new ethers.Contract(config.contractAddress, config.contractAbi, wallet);
 };
 
-const deposit = ({ config }) => async (senderWallet, amountToSend, uid) => { //Not best practice, but for now it works
+const deposit = ({ config }) => async (senderWallet, amountToSend, uid) => {
+  //Not best practice, but for now it works
   const basicPayments = await getContract(config, senderWallet);
   const tx = await basicPayments.deposit({
     value: await ethers.utils.parseEther(amountToSend).toHexString(),
