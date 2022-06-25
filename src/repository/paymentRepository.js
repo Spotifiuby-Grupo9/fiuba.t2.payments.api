@@ -2,9 +2,9 @@ const payment = require("../database/schemas/payment.js");
 
 const Payment = payment.schema();
 
-const save = () => async (payment, senderUid, date) => {
+const save = () => async (hash, senderUid, date) => {
   const newPayment = new Payment({
-    hash: payment.hash,
+    hash: hash,
     senderUid: senderUid,
     date: date,
   });
@@ -13,18 +13,18 @@ const save = () => async (payment, senderUid, date) => {
 
   const result = {
     id: newPayment._id.toString(),
-    hash: payment.hash,
+    hash: hash,
     senderUid: senderUid,
   };
 
   return result;
 };
 
-const getAll = () => () => {
-  return Payment.find();
+const getAll = () => async (uid) => {
+  return Payment.find({uid: uid});
 };
 
-const get = () => hash => {
+const get = () => async hash => {
   return Payment.findOne({ hash: hash });
 };
 

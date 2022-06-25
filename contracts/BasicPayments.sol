@@ -48,9 +48,6 @@ contract BasicPayments is Ownable {
         require(amount > 0, "cannot send 0 weis");
         emit PaymentMade(receiver, amount);
         (bool success, ) = receiver.call{ value: amount }("");
-        if (success) {
-            spotyTransactionAmountProcessed += 1;
-        }
         require(success, "payment failed");
     }
 
@@ -71,10 +68,6 @@ contract BasicPayments is Ownable {
         require(amount > 0, "did not send any value");
         sentPayments[sender] = sentPayments[sender].add(amount);
         emit DepositMade(sender, amount);
-    }
-
-    function getTransactionAmountProcessed() public view returns (uint256) {
-        return sentPayments.length;
     }
 
     function getContractBalance() public view returns (uint256) {

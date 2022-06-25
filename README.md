@@ -127,19 +127,19 @@ To run the tests, after you installed the dependencies, just run
 
 #### Linting
 
-To run the linter, after you installed the dependencies, just run 
+To run the linter, after you installed the dependencies, just run
 
 `npm run lint`
 
 #### Coverage
 
-To create a coverage report, after you installed the dependencies, just run 
+To create a coverage report, after you installed the dependencies, just run
 
 `npm run coverage`
 
 #### Doc generation
 
-To create the smart contract documentation, after you installed the dependencies, just run 
+To create the smart contract documentation, after you installed the dependencies, just run
 
 `npm run docgen`
 
