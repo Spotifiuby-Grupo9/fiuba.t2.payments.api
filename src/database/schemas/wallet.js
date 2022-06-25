@@ -11,7 +11,7 @@ mongoose = require("mongoose");
  */
 
 const schema = () => {
-  return mongoose.model("Payment", {
+  return mongoose.model("Wallet", {
     address: String,
     privateKey: String,
     uid: String,
