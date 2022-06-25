@@ -1,5 +1,6 @@
 const ethers = require("ethers");
-const getDepositHandler = require("../handlers/getDepositHandler");
+
+const TRANSACTION_SUCCESS = 1;
 
 const getContract = (config, wallet) => {
   return new ethers.Contract(config.contractAddress, config.contractAbi, wallet);
@@ -12,7 +13,7 @@ const deposit = ({ config }) => async (senderWallet, amountToSend) => {
   const tx = await basicPayments.deposit({
     value: await ethers.utils.parseEther(amountToSend).toHexString(),
   });
-  tx.wait(1).then(
+  tx.wait(TRANSACTION_SUCCESS).then(
     receipt => {
       console.log("Transaction mined");
       const firstEvent = receipt && receipt.events && receipt.events[0];

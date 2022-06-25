@@ -26,7 +26,7 @@ const getAll = () => () => {
 };
 
 const get = () => uid => {
-  return Wallet.find({ uid: uid });
+  return Wallet.findOne({ uid: uid });
 };
 
 module.exports = {

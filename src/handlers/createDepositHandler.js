@@ -4,7 +4,7 @@ function schema() {
       type: "object",
       properties: {
         senderId: {
-          type: "integer",
+          type: "string",
         },
         amountInEthers: {
           type: "string",
@@ -17,7 +17,8 @@ function schema() {
 
 function handler({ contractInteraction, walletService }) {
   return async function (req) {
-    return contractInteraction.deposit(walletService.getWallet(req.body.senderId), req.body.amountInEthers);
+    const senderWallet = await walletService.getWallet(req.body.senderId);
+    return contractInteraction.deposit(senderWallet, req.body.amountInEthers);
   };
 }
 

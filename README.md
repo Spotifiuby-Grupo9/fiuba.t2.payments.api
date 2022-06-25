@@ -29,7 +29,7 @@ The following endpoints are available:
 - Create wallet: POST /wallet - No body 
 - Get wallets: GET /wallet
 - Get wallet: GET /wallet/:id:
-- Deposit ethers into the Smart contract: POST /deposit - Body params: senderId(integer), amountInEthers(string)
+- Deposit ethers into the Smart contract: POST /deposit - Body params: senderId(string), amountInEthers(string)
 - Get deposit receipt: GET /deposit/:txHash:
 
 ### Usage example

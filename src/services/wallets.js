@@ -4,11 +4,17 @@ const walletRepository = require("../repository/walletRepository.js");
 const getDeployerWallet = ({ config }) => () => {
   const provider = new ethers.providers.InfuraProvider(config.network, config.infuraApiKey);
   const wallet = ethers.Wallet.fromMnemonic(config.deployerMnemonic).connect(provider);
-  console.log("Deployer wallet" + wallet.address);
   return wallet;
 };
 
 const createWallet = () => async uid => {
+  const maybeWallet = await walletRepository.get(uid);
+  if (uid === undefined) {
+    throw new Error("uid is required");
+  } else if (maybeWallet != null) {
+    throw new Error("user already have a wallet");
+  }
+
   const provider = new ethers.providers.InfuraProvider("kovan", process.env.INFURA_API_KEY);
   // This may break in some environments, keep an eye on it
   const wallet = ethers.Wallet.createRandom().connect(provider);
@@ -21,15 +27,13 @@ const getWalletsData = () => () => {
 };
 
 const getWalletData = () => uid => {
-  console.log("req.params.uid", uid);
-  return walletRepository.get(uid); //TODO
+  return walletRepository.get(uid);
 };
 
-const getWallet = ({}) => index => {
-  //TODO
+const getWallet = ({}) => async uid => {
+  const wallet = await walletRepository.get(uid);
   const provider = new ethers.providers.InfuraProvider("kovan", process.env.INFURA_API_KEY);
-
-  return new ethers.Wallet(accounts[index - 1].privateKey, provider);
+  return new ethers.Wallet(wallet.privateKey, provider);
 };
 
 module.exports = ({ config }) => ({
