@@ -30,10 +30,10 @@ const deposit = ({ config }) => async (senderWallet, amountToSend, uid) => {
       console.error("message");
       console.error(message);
     },
-  )
-  
+  );
+
   await paymentService.save(tx.hash, uid, Date.now());
-  
+
   return tx;
 };
 

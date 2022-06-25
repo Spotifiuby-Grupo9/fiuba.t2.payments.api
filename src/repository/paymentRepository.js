@@ -20,8 +20,8 @@ const save = () => async (hash, senderUid, date) => {
   return result;
 };
 
-const getAll = () => async (uid) => {
-  return Payment.find({uid: uid});
+const getAll = () => async uid => {
+  return Payment.find({ uid: uid });
 };
 
 const get = () => async hash => {
