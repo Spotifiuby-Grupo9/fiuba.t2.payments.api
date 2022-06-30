@@ -4,6 +4,7 @@ const createWallet = require("./handlers/createWalletHandler");
 const createDeposit = require("./handlers/createDepositHandler");
 const getDeposit = require("./handlers/getDepositHandler");
 const getPayments = require("./handlers/getPaymentsHandler");
+const getBalance = require("./handlers/getBalanceHandler");
 
 function getWalletDataRoute({ services, config }) {
   return {
@@ -59,6 +60,15 @@ function getPaymentsRoute({ services, config }) {
   };
 }
 
+function getBalanceRoute({ services, config }) {
+  return {
+    method: "GET",
+    url: "/balance",
+    schema: getBalance.schema(config),
+    handler: getBalance.handler({ config, ...services }),
+  };
+}
+
 module.exports = [
   getWalletDataRoute,
   getWalletsDataRoute,
@@ -66,4 +76,5 @@ module.exports = [
   createDepositRoute,
   getDepositRoute,
   getPaymentsRoute,
+  getBalanceRoute,
 ];
