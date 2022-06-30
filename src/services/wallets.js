@@ -37,20 +37,20 @@ const getWallet = ({}) => async uid => {
   return new ethers.Wallet(wallet.privateKey, provider);
 };
 
-const getWalletBalance = ({config}) => async uid => {
+const getWalletBalance = ({ config }) => async uid => {
   const web3 = new Web3(new Web3.providers.HttpProvider("https://kovan.infura.io/v3/" + config.infuraApiKey));
   console.log("uid", uid);
   const wallet = await walletRepository.get(uid);
   console.log("wallet", wallet);
-  return web3.eth.getBalance(wallet.address, function(err, result) {
+  return web3.eth.getBalance(wallet.address, function (err, result) {
     if (err) {
-      console.log(err)
+      console.log(err);
     } else {
-      const ether = web3.utils.fromWei(result, "ether"); 
+      const ether = web3.utils.fromWei(result, "ether");
       console.log(ether + " ETH");
     }
-  })
-}
+  });
+};
 
 module.exports = ({ config }) => ({
   createWallet: createWallet({ config }),
