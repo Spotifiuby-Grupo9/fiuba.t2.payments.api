@@ -9,7 +9,7 @@ const fastify = require("fastify")({ logger: true });
 // Declares routes
 routes.forEach(route => fastify.route(route({ config, services })));
 
-const port = process.env.PORT || 5002;
+const port = process.env.PORT || 5000;
 
 // Run the server!
 const start = async () => {
