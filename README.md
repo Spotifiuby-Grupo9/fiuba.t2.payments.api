@@ -1,5 +1,7 @@
 # BasicPayments
 
+[![codecov](https://codecov.io/gh/Spotifiuby-Grupo9/fiuba.t2.payments.api/branch/main/graph/badge.svg?token=kTuoh6O2G7)](https://codecov.io/gh/Spotifiuby-Grupo9/fiuba.t2.payments.api)
+
 Smart contract and basic service to solve payments in the Taller de Programacion 2' projects.
 
 ## Installation
