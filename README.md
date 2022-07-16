@@ -4,6 +4,10 @@
 
 Smart contract and basic service to solve payments in the Taller de Programacion 2' projects.
 
+# Swagger
+
+Puede encontrarse el swagger [aqui](https://app.swaggerhub.com/apis/JOELSAIDMAN1/payments/1.0.0)
+
 ## Installation
 
 To install the project we recommend that you use NVM and install the node version defined in `.nvmrc`
